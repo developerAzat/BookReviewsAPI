@@ -28,14 +28,22 @@ function _displayItems(data) {
       }
         var row = document.getElementById('row' + countRows);
         var element = document.createElement('div');
-        element.className = 'col-md-3'      
+        element.className = 'col-md-3';
+
         var img = document.createElement('img');
         img.className = 'img-fluid';
-        img.src = item.img      
+        img.src = item.img;
+
         var description = document.createElement('h4');
-        description.innerText = item.name       
-        element.appendChild(img);
-        element.appendChild(description)        
+        description.innerText = item.name;    
+         
+        var link = document.createElement('a');
+        link.href = `item.html?${item.id}`;
+
+        link.appendChild(img);
+        link.appendChild(description);
+        element.appendChild(link);
+                
         row.appendChild(element);
 
         countElement++;

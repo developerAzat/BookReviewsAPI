@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">Главная</a>
+              <a class="nav-link" href="index.html">Главная</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="catalog.html">Жанры<span class="sr-only">(current)</span></a>
@@ -50,7 +50,12 @@
         </nav>
         </div>
         <div id="container" class="container">
-            
+            <div class="col-md-3">
+                <a href="index.html" class="link">
+                    <img src="https://cdn.book24.ru/v2/AST000000000130387/COVER/cover3d1__w674.jpg" class="img-fluid"/>
+                    <h4>Продавец обуви. История компании Nike, рассказанная её основателем</h4>
+                </a>
+            </div>
         </div>  
       </main>
 
@@ -67,5 +72,14 @@
         getCategories();
         getItems();
     </script>
+
+    <style>
+        a.text:active, /* активная/посещенная ссылка */
+a.text:hover,  /* при наведении */
+a.text {
+  text-decoration: none;
+  color: #666;
+}
+    </style>
 </body>
 </html>
