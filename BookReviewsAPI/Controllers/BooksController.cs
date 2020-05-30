@@ -10,12 +10,12 @@ namespace BookReviewsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class BooksController : ControllerBase
     {
 
         ApiContext db;
 
-        public BookController(ApiContext DB)
+        public BooksController(ApiContext DB)
         {
             db = DB;
         }

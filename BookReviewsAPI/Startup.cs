@@ -29,7 +29,7 @@ namespace BookReviewsAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            string con = "Server=tcp:10.10.138.12;Database=BookReviewsAPI;User ID= sa;Password=strctsa;";
+            string con = "Server=tcp:10.10.138.12;Database=BooksReviewsAPI;User ID= sa;Password=strctsa;";
 
             services.AddDbContext<ApiContext>(opt =>
                                                     opt.UseSqlServer(con));

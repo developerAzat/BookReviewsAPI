@@ -1,5 +1,4 @@
-const uri = 'api/book';
-let todos = [];
+const uri = 'api/books';
 
 function getItems() {
   fetch(uri)
@@ -10,6 +9,11 @@ function getItems() {
 
 function _displayItems(data) {
     const tBody = document.getElementById('container');
+
+    while(tBody.firstChild){
+        tBody.removeChild(tBody.firstChild);
+    }
+
     tBody.innerHTML = '';
   
     var countElement = 0;
@@ -42,4 +46,3 @@ function _displayItems(data) {
     });
   }
 
-  getItems();

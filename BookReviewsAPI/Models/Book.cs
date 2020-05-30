@@ -19,6 +19,8 @@ namespace BookReviewsAPI.Models
 
         public string Review { get; set; }
 
+        public string Button { get; set; }
+
         public BookDTO ReturnBookDTO()
         {
             return new BookDTO(this);

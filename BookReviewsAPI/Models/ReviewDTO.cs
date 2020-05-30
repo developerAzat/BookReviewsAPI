@@ -14,6 +14,7 @@ namespace BookReviewsAPI.Models
             Img = book.Img;
             CategoryName = book.Category.Name;
             Review = book.Review;
+            Button = book.Button;
         }
 
         public string BookName { get; set; }
@@ -25,5 +26,7 @@ namespace BookReviewsAPI.Models
         public string CategoryName { get; set; }
 
         public string Review { get; set; }
+
+        public string Button { get; set; }
     }
 }
