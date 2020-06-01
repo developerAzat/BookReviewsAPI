@@ -29,10 +29,11 @@ namespace BookReviewsAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            string con = "Server=tcp:10.10.138.12;Database=BooksReviewsAPI;User ID= sa;Password=strctsa;";
+            //string con = "Server=tcp:10.10.138.12;Database=BooksReviewsAPI;User ID= sa;Password=strctsa;";
+            //string con = "Data Source=tcp:booksreviewsapidbserver.database.windows.net,1433;Initial Catalog=BooksReviewsAPI_db;User Id=Azat@booksreviewsapidbserver;Password=Deinferno98";
 
             services.AddDbContext<ApiContext>(opt =>
-                                                    opt.UseSqlServer(con));
+                                                    opt.UseSqlServer(Configuration.GetConnectionString("BooksAPIConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
