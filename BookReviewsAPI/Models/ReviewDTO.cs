@@ -10,9 +10,9 @@ namespace BookReviewsAPI.Models
         public ReviewDTO(Book book)
         {
             BookName = book.Name;
-            AuthorName = book.Author.AuthorName;
+            AuthorName = book.Author?.AuthorName;
             Img = book.Img;
-            CategoryName = book.Category.Name;
+            CategoryName = book.Category?.Name;
             Review = book.Review;
             Button = book.Button;
         }

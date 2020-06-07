@@ -12,7 +12,6 @@ namespace BookReviewsAPI.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-
         ApiContext db;
 
         public BooksController(ApiContext DB)

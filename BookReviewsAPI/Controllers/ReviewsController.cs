@@ -21,18 +21,40 @@ namespace BookReviewsAPI.Controllers
             this.db = db;
         }
 
-        // GET: api/<ReviewsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return null;
-        }
-
         // GET api/<ReviewsController>/5
         [HttpGet("{id}")]
         public ActionResult<ReviewDTO> Get(int id)
         {
             return db.Books.Include(b => b.Author).Include(b => b.Category).FirstOrDefault(b => b.ID == id)?.ReturnReviewDTO();
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ReviewDTO>> Get([ModelBinder] string name)
+        {
+            //return db.Books.Include(b => b.Author).Include(b => b.Category).FirstOrDefault(b => b.Name.Contains(name))?.ReturnReviewDTO();
+
+            var book = db.Books.Include(b => b.Author).FirstOrDefault(b => b.Name.ToLower().Contains(name.ToLower()));
+
+            var words = name.ToLower().Split(' ');
+
+            var reviews = new List<ReviewDTO>();
+
+            if (book == null)
+            {
+                db.Books.Include(b => b.Author).ToList().ForEach(b =>
+                {
+                    words.ToList().ForEach(w => 
+                    {
+                        if (b.Name.ToLower().Contains(w))
+                            reviews.Add(b.ReturnReviewDTO());
+                    });
+                });
+
+                return reviews;
+            }
+
+            reviews.Add(book.ReturnReviewDTO());
+            return reviews;
         }
 
         // POST api/<ReviewsController>
