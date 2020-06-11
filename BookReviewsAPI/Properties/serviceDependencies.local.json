@@ -1,10 +1,3 @@
 {
-  "dependencies": {
-    "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/Microsoft.Sql/servers/booksreviewsapidbserver/databases/BooksReviewsAPI_db",
-      "type": "mssql.azure",
-      "connectionId": "BooksAPIConnection",
-      "secretStore": "LocalSecretsFile"
-    }
-  }
+  "dependencies": {}
 }

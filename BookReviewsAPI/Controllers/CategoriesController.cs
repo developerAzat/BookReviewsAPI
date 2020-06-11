@@ -13,7 +13,6 @@ namespace BookReviewsAPI.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-
         public ApiContext db {get;set;}
 
         public CategoriesController(ApiContext db)
@@ -21,14 +20,12 @@ namespace BookReviewsAPI.Controllers
             this.db = db;
         }
 
-        // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Category>> Get()
         {
             return db.Categories.ToList();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<BookDTO>> Get(int id)
         {

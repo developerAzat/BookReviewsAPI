@@ -19,7 +19,6 @@ namespace BookReviewsAPI.Controllers
             db = DB;
         }
 
-        // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<BookDTO>> Get()
         {
@@ -31,29 +30,32 @@ namespace BookReviewsAPI.Controllers
             return books;
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<BookDTO> Get(int id)
         {
             return db.Books.Include(b => b.Author).ToList().FirstOrDefault(b => b.ID == id)?.ReturnBookDTO();
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("notused")]
+        [HttpGet]
+        public ActionResult<IEnumerable<BookDTO>> GetNotUsed()
         {
+            var notUsedBooks = db.Books.Where(b => !b.Used).ToList();
+            var returnBooks = new List<BookDTO>();
+
+            foreach(var book in notUsedBooks)
+            {
+                returnBooks.Add(book.ReturnBookDTO());
+
+                book.Used = true;
+                db.Books.Update(book);
+            }
+
+            db.SaveChanges();
+
+            return returnBooks.ToList();
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

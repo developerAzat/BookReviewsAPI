@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookReviewsAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,7 +22,6 @@ namespace BookReviewsAPI.Controllers
             this.db = db;
         }
 
-        // GET api/<ReviewsController>/5
         [HttpGet("{id}")]
         public ActionResult<ReviewDTO> Get(int id)
         {
@@ -31,8 +31,6 @@ namespace BookReviewsAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ReviewDTO>> Get([ModelBinder] string name)
         {
-            //return db.Books.Include(b => b.Author).Include(b => b.Category).FirstOrDefault(b => b.Name.Contains(name))?.ReturnReviewDTO();
-
             var book = db.Books.Include(b => b.Author).FirstOrDefault(b => b.Name.ToLower().Contains(name.ToLower()));
 
             var words = name.ToLower().Split(' ');
@@ -46,7 +44,10 @@ namespace BookReviewsAPI.Controllers
                     words.ToList().ForEach(w => 
                     {
                         if (b.Name.ToLower().Contains(w))
+                        {
                             reviews.Add(b.ReturnReviewDTO());
+                            return;
+                        }
                     });
                 });
 

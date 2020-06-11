@@ -21,6 +21,8 @@ namespace BookReviewsAPI.Models
 
         public string Button { get; set; }
 
+        public bool Used { get; set; }
+
         public BookDTO ReturnBookDTO()
         {
             return new BookDTO(this);
